@@ -1,0 +1,22 @@
+services:
+  ros2:
+    build:
+      context: .
+      args:
+        USER_UID: "1000"
+        USER_GID: "1000"
+    image: ros2_training:jazzy
+    container_name: ros2_training
+    network_mode: host
+    environment:
+      - ROS_LOCALHOST_ONLY=1
+      - DISPLAY=${DISPLAY}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - PULSE_SERVER=${PULSE_SERVER}
+    volumes:
+      - ../src:/workspace/src
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+    stdin_open: true
+    tty: true

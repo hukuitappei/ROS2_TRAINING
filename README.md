@@ -12,7 +12,7 @@ ROS2の勉強・検証用リポジトリ。
 | ディストリビューション | Ubuntu 24.04.2 LTS (noble) |
 | 対応するROS2ディストロ | **Jazzy Jalisco**(LTS, サポート〜2029年) |
 | ROS2インストール状況 | 未インストール |
-| Docker | 未インストール |
+| Docker | 未インストール(導入する場合はWSL2内にDocker Engineを直接インストールする方式を採用。[`docker/README.md`](./docker/README.md)参照) |
 
 ROS2はネイティブWindows版も存在するが、パッケージ対応状況やビルド環境構築(Visual Studio Build Tools等)が複雑なため、
 **WSL2 + Ubuntu 24.04 + ROS2 Jazzy** を検証環境として採用する。
@@ -66,3 +66,11 @@ cd ~/ROS2_TRAINING   # WSL側にcloneしたパス
 colcon build
 source install/setup.bash
 ```
+
+## Dockerでの検証(オプション)
+
+上記のネイティブ手順に加え、コンテナ経由で検証する手段も用意している。
+どちらを使うかは用途に応じて選べばよく、統一する必要はない。
+
+- 手順: [`docker/README.md`](./docker/README.md)
+- 採用理由・検証時の環境情報: [`docs/docker_migration.md`](./docs/docker_migration.md)
