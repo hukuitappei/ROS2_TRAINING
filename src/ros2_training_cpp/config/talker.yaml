@@ -1,0 +1,4 @@
+cpp_talker:
+  ros__parameters:
+    topic_name: training/chatter
+    publish_period_ms: 500

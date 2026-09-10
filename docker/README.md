@@ -1,14 +1,15 @@
 # Docker運用手順(検証用・オプション)
 
-`README.md`本体のネイティブ手順(WSL2 + Ubuntu 24.04に直接ROS2 Jazzyをインストール)と併用する、
-コンテナ経由の検証手段。どちらか一方に統一する必要はなく、用途に応じて選択する。
+`README.md`本体のネイティブ手順を主開発環境とし、依存関係の隔離や再現確認が必要な場合に使う補助経路。
 
 判断根拠は [`docs/docker_migration.md`](../docs/docker_migration.md) を参照。
 
 ## 前提
 
-- WSL2 Ubuntu上で作業する(Docker Desktopは使わない)。
-- WSL2側でDocker Engineをインストール済みであること。
+- WSL2 Ubuntu上で作業する。
+- 現在のPCではDocker DesktopとUbuntu内Docker Engineの両方を検出している。
+- 接続先は docker context ls と docker info で確認する。2026-09-08時点の接続先はDocker Desktop。
+- Ubuntu内Docker Engineを再構築する場合の参考手順:
   ```bash
   # WSL2 Ubuntu内で実行
   sudo apt update
@@ -30,7 +31,7 @@
 ## ビルド・起動
 
 ```bash
-cd ~/ROS2_TRAINING/docker   # WSL側にcloneしたパス
+cd ~/ROS2_TEST/docker
 docker compose build
 docker compose run --rm ros2
 ```
@@ -57,13 +58,12 @@ docker compose run --rm ros2 rviz2
 
 ## メモリが足りない場合
 
-WSL2はデフォルトで物理メモリの一部しか使わない設定になっていることが多い(`.wslconfig`未設定時)。
-Gazebo等重いシミュレーションで不足する場合は、Windows側の `%USERPROFILE%\.wslconfig` に以下を追記し、
-`wsl --shutdown` 後に再起動する。
+現在は .wslconfig なしでWSL2から30 GiBを利用できる。実測で不足が確認された場合だけWindows側の
+%USERPROFILE%\.wslconfig を調整し、wsl --shutdown 後に再起動する。
 
 ```ini
 [wsl2]
-memory=12GB
+memory=32GB
 ```
 
 ## 復旧・作り直し
