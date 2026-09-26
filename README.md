@@ -53,7 +53,7 @@ ROS2はネイティブWindows版も存在するが、パッケージ対応状況
    cd ~/ROS2_TEST
    source setup.bash
    ```
-   毎回の読み込みを省略する場合だけ、source ~/ROS2_TEST/setup.bash を ~/.bashrc に追加する。
+   毎回の読み込みを省略する場合だけ、`source ~/ROS2_TEST/setup.bash` を `~/.bashrc` に追加する。
 4. talker/listenerで動作確認
    ```bash
    ros2 run demo_nodes_cpp talker
@@ -68,7 +68,8 @@ ROS2_TRAINING/
 ├── src/
 │   ├── ros2_training_cpp/    # C++ Publisher、設定、launch、テスト
 │   ├── ros2_training_py/     # Python Subscriber、設定、launch、テスト
-│   └── ros2_training_sim/    # Gazeboワールド、車輪型ロボット、LiDAR、bridge
+│   ├── ros2_training_sim/    # Gazeboワールド、車輪型ロボット、LiDAR、bridge
+│   └── robot_manzai/         # 2台のロボットによる漫才進行
 ├── docs/                      # 学習メモ・検証記録
 ├── docker/                    # 再現確認用のDocker環境
 ├── setup.bash                 # ROS 2 underlay/overlayの読み込み
@@ -108,6 +109,21 @@ ros2 launch ros2_training_cpp training.launch.py
 colcon test
 colcon test-result --verbose
 ```
+
+## ロボット漫才
+
+YAML台本を読み込み、台詞・音声テキスト・動作キューを順番に配信する。
+
+```bash
+cd ~/ROS2_TEST
+source setup.bash
+colcon build --symlink-install --packages-select robot_manzai
+source install/setup.bash
+ros2 launch robot_manzai manzai.launch.py
+```
+
+パッケージの使い方は [`src/robot_manzai/README.md`](./src/robot_manzai/README.md)、
+設計とロードマップは [`docs/robot_manzai.md`](./docs/robot_manzai.md) を参照。
 
 ## Gazeboシミュレーション
 

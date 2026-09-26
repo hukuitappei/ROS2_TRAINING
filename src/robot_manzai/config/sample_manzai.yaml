@@ -1,0 +1,22 @@
+title: AIロボットの朝
+lines:
+  - role: boke
+    text: 最近、人工知能で空気が読めるようになりまして。
+    emotion: proud
+    motion: nod
+    pause_sec: 1.8
+  - role: tsukkomi
+    text: ほな、今ここがすべってる空気も読めてるな？
+    emotion: sharp
+    motion: point
+    pause_sec: 2.0
+  - role: boke
+    text: はい。ログに「会場温度、急低下」と出ています。
+    emotion: serious
+    motion: look_around
+    pause_sec: 2.0
+  - role: tsukkomi
+    text: 気温の話やない！笑いを取り戻せ！
+    emotion: energetic
+    motion: double_take
+    pause_sec: 1.5
